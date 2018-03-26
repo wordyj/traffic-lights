@@ -1,22 +1,34 @@
-int green = 13;
-int orange = 12;
-int red = 11;
-int turn = 10;
+int greenMain = 13;
+int orangeMain = 12;
+int redMain = 11;
+int turnMain = 10;
+int greenSide = 9;
+int orangeSide = 8;
+int redSide = 7;
+int turnSide = 6;
+
+
 int delayTime = 1000;
 void setup() {
   // put your setup code here, to run once:
-  pinMode(green, OUTPUT);
-  pinMode(orange, OUTPUT);
-  pinMode(red, OUTPUT);
-  pinMode(turn, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  cycle();
+  cycleLights(greenMain, orangeMain, redMain, turnMain);
+  delay(delayTime);
+  cycleLights(greenSide, orangeSide, redSide, turnSide);
 }
 
-void cycle() {
+void cycleLights(int green, int orange, int red, int turn) {
   digitalWrite(red, LOW);
   digitalWrite(green, HIGH);
   delay(delayTime);
