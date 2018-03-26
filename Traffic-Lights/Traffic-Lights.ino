@@ -25,7 +25,9 @@ void loop() {
   // put your main code here, to run repeatedly:
   cycleLights(greenMain, orangeMain, redMain, turnMain);
   delay(delayTime);
-  cycleLights(greenSide, orangeSide, redSide, turnSide);
+  if (0 == 0){
+    cycleLights(greenSide, orangeSide, redSide, turnSide);
+    }
 }
 
 void cycleLights(int green, int orange, int red, int turn) {
