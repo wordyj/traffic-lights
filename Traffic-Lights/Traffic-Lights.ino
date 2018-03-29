@@ -23,9 +23,12 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  cycleLights(greenMain, orangeMain, redMain, turnMain);
-  delay(delayTime);
+  digitalWrite(greenMain, HIGH);
+  // Leave green on. If sensor triggered, cycle main, wait, cycle minor, back to start.
+  
   if (0 == 0){
+    cycleLights(greenMain, orangeMain, redMain, turnMain);
+    delay(delayTime);
     cycleLights(greenSide, orangeSide, redSide, turnSide);
     }
 }
