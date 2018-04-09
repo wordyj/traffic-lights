@@ -1,11 +1,11 @@
-int green = 13;
+int green = 13; //define pins
 int orange = 12;
 int red = 11;
 int turn = 10;
-int delayTime = 1000;
+int delayTime = 1000; //time to use in all delays
 void setup() {
   // put your setup code here, to run once:
-  pinMode(green, OUTPUT);
+  pinMode(green, OUTPUT); //set pins to output
   pinMode(orange, OUTPUT);
   pinMode(red, OUTPUT);
   pinMode(turn, OUTPUT);
@@ -13,7 +13,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  cycle();
+  cycle(); //call the cycle function, looping through the lights
 }
 
 void cycle() {
