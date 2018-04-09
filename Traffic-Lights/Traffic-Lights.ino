@@ -1,4 +1,3 @@
-#include <NewPing.h>
 int greenMain = 13;
 int orangeMain = 12;
 int redMain = 11;
@@ -9,10 +8,8 @@ int redSide = 7;
 int turnSide = 6;
 int trigPin = 5;
 int echoPin = 4;
-long duration;
-int distance;
-#define MAX_DISTANCE 200
-NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
+long duration, distance;
+boolean doLoop;
 
 int delayTime = 1000;
 void setup() {
@@ -36,14 +33,18 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   digitalWrite(greenMain, HIGH);
+  digitalWrite(redMain, LOW);
   // Leave green on. If sensor triggered, cycle main, wait, cycle minor, back to start.
   getDistance();
-  delay(100);
-  if (distance <1){
-  //if (0 == 1){
+  if (distance <4){
+  doLoop = true;
+    }
+    
+   if (doLoop == true){
     cycleLights(greenMain, orangeMain, redMain, turnMain);
     delay(delayTime);
     cycleLights(greenSide, orangeSide, redSide, turnSide);
+    doLoop = false;
     }
 }
 
@@ -62,18 +63,20 @@ void cycleLights(int green, int orange, int red, int turn) {
   digitalWrite(turn, LOW);
 }
 void getDistance(){
-  // Clears the trigPin
+
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration = pulseIn(echoPin, HIGH);
-  // Calculating the distance
-  distance= duration*0.034/2;
-  // Prints the distance on the Serial Monitor
-  Serial.print("Distance: ");
+  duration = pulseIn(echoPin,HIGH);
+  distance = (duration/2) / 29.1;
   Serial.println(distance);
+  
+  /*digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  pulseWidth = pulseIn(echoPin, HIGH);
+  Serial.print("Width")
+  Serial.print(*/
   }
